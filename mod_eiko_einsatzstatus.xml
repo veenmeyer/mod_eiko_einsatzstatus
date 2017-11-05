@@ -30,8 +30,6 @@
 	</files>
 
 	<languages>
-		<language tag="de-DE">de-DE.mod_eiko_einsatzstatus.ini</language>
-		<language tag="de-DE">de-DE.mod_eiko_einsatzstatus.sys.ini</language>
 	</languages>
 
 	<config>

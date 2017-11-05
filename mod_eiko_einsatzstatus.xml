@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * @copyright	Copyright (c) 2017 einsatzkomponente.de. All rights reserved.
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ */
+-->
+<extension type="module" version="3.0" client="site" method="upgrade">
+	<name>Einsatzstatus</name>
+	<author>Ralf Meyer</author>
+	<creationDate>November 2017</creationDate>
+	<copyright>Copyright (c) 2017 einsatzkomponente.de. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>ralf.meyer@mail.de</authorEmail>
+	<authorUrl>einsatzkomponente.de</authorUrl>
+	<version>1.0.0</version>
+	<description>
+	<![CDATA[
+	
+	]]>
+	</description>
+
+	<files>
+		<filename module="mod_eiko_einsatzstatus">mod_eiko_einsatzstatus.php</filename>
+		<filename>helper.php</filename>
+		<filename>eiko_gateway.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+		<folder>images</folder>
+	</files>
+
+	<languages>
+		<language tag="de-DE">de-DE.mod_eiko_einsatzstatus.ini</language>
+		<language tag="de-DE">de-DE.mod_eiko_einsatzstatus.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			
+		<field
+			name="api"
+			type="text"
+			default ="8157658715"
+			label="API-Key"
+			width ="100"
+			hint=" Api-Key (mind. 10 Zahlen !!)"
+			description="Geben Sie hier den Api-Key ein (nur Zahlen !). Geben Sie den Api-Key nicht an Dritte weiter !"
+			filter="integer"
+		 />
+		 
+<field name="note1" 
+		type="note" 
+		label="Bitte geben Sie unbedingt hier Ihren individuellen Api-Code ein !!" 
+		class="alert alert-warning" 
+		description="Es werden nur Zahlen akzeptiert. Der Api-Key sollte aus mind. 10 Zahlen bestehen. Geben Sie diesen Api-Key nicht an Dritte weiter !!"
+		/>
+
+		<field name="einsatzstatus" type="list" default="999" label="Einsatzstatus" description="">
+			<option value="999">Einsatzbereit</option>
+			<option value="300">Feueralarm</option>
+			<option value="400">Hilfeleistung</option>
+			<option value="500">Sonstiger Einsatz</option>
+			<option value="600">Übungseinsatz</option>
+		</field>
+
+				
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+				/>
+
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+				/>
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC"
+				/>
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static"
+				>
+					<option value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

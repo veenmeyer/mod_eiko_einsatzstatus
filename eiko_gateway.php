@@ -3,7 +3,18 @@
 
 define( '_JEXEC', 1 );
 define( 'DS', DIRECTORY_SEPARATOR );
-define('JPATH_BASE', $_SERVER['DOCUMENT_ROOT']."/" );    // Absoluter Pfad zu der Joomla Installation
+
+$ordner ='';
+if (isset ($_POST["ordner"])) {
+$ordner = mysql_real_escape_string($_POST["ordner"]);
+}
+
+if (isset ($_GET["ordner"])) {
+$ordner = mysql_real_escape_string($_GET["ordner"]);
+}
+if (!$ordner) { $ordner = ''; }
+
+define('JPATH_BASE', $_SERVER['DOCUMENT_ROOT']."/".$ordner );    // Absoluter Pfad zu der Joomla Installation
  
 // Einbinden der Notwendigen Klassen falls diese noch nicht geladen wurden
 require_once ( JPATH_BASE .DS.'includes'.DS.'defines.php' );

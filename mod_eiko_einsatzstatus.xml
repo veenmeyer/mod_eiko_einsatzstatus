@@ -13,7 +13,7 @@
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>ralf.meyer@mail.de</authorEmail>
 	<authorUrl>einsatzkomponente.de</authorUrl>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<description>
 	<![CDATA[
 	
@@ -109,4 +109,9 @@
 			</fieldset>
 		</fields>
 	</config>
+<!-- UPDATESERVER DEFINITION -->
+	<updateservers>
+		<!-- Note: No spaces or linebreaks allowed between the server tags -->
+		<server type="extension" priority="1" name="mod_eiko_einsatzstatus">https://www.feuerwehr-veenhusen.de/update/mod_eiko_einsatzstatus.xml</server>
+	</updateservers>
 </extension>

@@ -6,13 +6,35 @@ define( 'DS', DIRECTORY_SEPARATOR );
 
 $ordner ='';
 if (isset ($_POST["ordner"])) {
-$ordner = mysql_real_escape_string($_POST["ordner"]);
+$ordner =  escape($_POST["ordner"]);
 }
 
 if (isset ($_GET["ordner"])) {
-$ordner = mysql_real_escape_string($_GET["ordner"]);
+$ordner =  escape($_GET["ordner"]);
 }
 if (!$ordner) { $ordner = ''; }
+
+
+$ordner = real_htmlspecialchars ($ordner);
+
+function escape($value) {
+    $return = '';
+    for($i = 0; $i < strlen($value); ++$i) {
+        $char = $value[$i];
+        $ord = ord($char);
+        if($char !== "'" && $char !== "\"" && $char !== '\\' && $ord >= 32 && $ord <= 126)
+            $return .= $char;
+        else
+            $return .= '\\x' . dechex($ord);
+    }
+    return $return;
+}
+
+    function real_htmlspecialchars($string)
+    {
+        return htmlspecialchars($string, ENT_QUOTES, "UTF-8");
+    }
+	
 
 define('JPATH_BASE', $_SERVER['DOCUMENT_ROOT']."/".$ordner );    // Absoluter Pfad zu der Joomla Installation
  

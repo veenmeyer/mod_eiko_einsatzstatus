@@ -71,10 +71,10 @@
 
 		if ($einsatz=='') {
 		   $status = $params['einsatzstatus']; 
-		   if (!$status) : $einsatz = '200'; endif;
+		   if (!$status) : $einsatz = '999'; endif;
 		}
 		//Array mit möglichen Status, erleichertert die Erweiterung
-		$possible_status = ['200','300','400','500','600','999'];
+		$possible_status = ['300','400','500','600','999'];
 		
 		//Alles auskommentiert, da immer der gleiche Code verwendet wird
 		/*if ($einsatz=='300') {
@@ -127,3 +127,9 @@
 	echo $status; 
 				
 ?>
+
+
+
+
+
+ 

@@ -3,21 +3,24 @@
 
 	define( '_JEXEC', 1 );
 	define( 'DS', DIRECTORY_SEPARATOR );
-
+	
 	$ordner ='';
 	if (isset ($_POST["ordner"])) {
 		$ordner =  escape($_POST["ordner"]);
 	}
-
 	if (isset ($_GET["ordner"])) {
 		$ordner =  escape($_GET["ordner"]);
 	}
 	if (!$ordner) { 
 		$ordner = '';
 	}
-
 	$ordner = real_htmlspecialchars ($ordner);
-
+		
+	$domain = parse_url($ordner, PHP_URL_HOST);
+	
+	$ordner = str_replace('http://', '', $ordner);
+	$ordner = str_replace('https://', '', $ordner);
+	$ordner = str_replace($domain, '', $ordner);
 	function escape($value) {
 		$return = '';
 		for($i = 0; $i < strlen($value); ++$i) {
@@ -30,21 +33,18 @@
 		}
 		return $return;
 	}
-
 	function real_htmlspecialchars($string)
 	{
 		return htmlspecialchars($string, ENT_QUOTES, "UTF-8");
-	}
-		
-
-	define('JPATH_BASE', $_SERVER['DOCUMENT_ROOT']."/".$ordner );    // Absoluter Pfad zu der Joomla Installation
+	}	
+	
+	define('JPATH_BASE', $_SERVER['DOCUMENT_ROOT'].$ordner );	// Absoluter Pfad zu der Joomla Installation
 	 
 	// Einbinden der Notwendigen Klassen falls diese noch nicht geladen wurden
 	require_once ( JPATH_BASE .DS.'includes'.DS.'defines.php' );
 	require_once ( JPATH_BASE .DS.'includes'.DS.'framework.php' );
 	 
 	//JHtml::_('bootstrap.framework');
-
 	$app = JFactory::getApplication('site');
 	
 	//GET und POST unterstützen
@@ -57,18 +57,14 @@
 	
 	$api = $postData->get('api','', 'int');
 	$status = '';
-
 	$db = JFactory::getDbo();
 	$query = $db->getQuery(true);
 	$query->select('params')->from('#__modules')->where('module = "mod_eiko_einsatzstatus" and published ="1"');
 	$db->setQuery($query);
 	$params = $db->loadResult();
-
 	$registry = new JRegistry;
 	$params = $registry->loadString($params);
-
 	if ($api == $params['api']) {
-
 		if ($einsatz=='') {
 		   $status = $params['einsatzstatus']; 
 		   if (!$status) : $einsatz = '999'; endif;
@@ -118,18 +114,15 @@
 			$db = JFactory::getDBO();
 			$db->setQuery($query);
 			$db->execute();
+			$response = '200';
+		}
+		else {
+			$response = '404';
 		}
 	}
 	else {
-		$status = '100';
+		$response = '401';
 	}
-
-	echo $status; 
+	echo $response; 
 				
 ?>
-
-
-
-
-
- 

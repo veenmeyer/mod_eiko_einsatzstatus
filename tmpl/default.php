@@ -29,14 +29,14 @@ if ($einsatzstatus == '400')
 			$status.= '<b>(Hilfeleistung)</b>';
 		}
 
-if ($einsatzstatus == '500') 
+if ($einsatzstatus == '600') 
 		{
 			$status= 'Zur Zeit befinden wir uns im Einsatz !';
 			$status.= '<br/>';
 			$status.= '<b>(Sonstiger Einsatz)</b>';
 		}
 
-if ($einsatzstatus == '600') 
+if ($einsatzstatus == '500') 
 		{
 			$status= 'Zur Zeit befinden wir uns im Einsatz !';
 			$status.= '<br/>';

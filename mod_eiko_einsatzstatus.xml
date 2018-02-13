@@ -8,12 +8,12 @@
 <extension type="module" version="3.0" client="site" method="upgrade">
 	<name>Einsatzstatus</name>
 	<author>Ralf Meyer</author>
-	<creationDate>Januar 2018</creationDate>
+	<creationDate>Februar 2018</creationDate>
 	<copyright>Copyright (c) 2018 einsatzkomponente.de. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>ralf.meyer@mail.de</authorEmail>
 	<authorUrl>einsatzkomponente.de</authorUrl>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 	<description>
 	<![CDATA[
 	

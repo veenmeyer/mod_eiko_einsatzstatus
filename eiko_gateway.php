@@ -4,6 +4,17 @@
 	define( '_JEXEC', 1 );
 	define( 'DS', DIRECTORY_SEPARATOR );
 	
+	$prefordner ='';
+	if (isset ($_POST["prefordner"])) {
+		$prefordner =  escape($_POST["prefordner"]);
+	}
+	if (isset ($_GET["prefordner"])) {
+		$prefordner =  escape($_GET["prefordner"]);
+	}
+	if (!$prefordner) { 
+		$prefordner = '';
+	} else {$prefordner = '/'.$prefordner;}
+
 	$ordner ='';
 	if (isset ($_POST["ordner"])) {
 		$ordner =  escape($_POST["ordner"]);
@@ -15,7 +26,6 @@
 		$ordner = '';
 	}
 	$ordner = real_htmlspecialchars ($ordner);
-		
 	$domain = parse_url($ordner, PHP_URL_HOST);
 	
 	$ordner = str_replace('http://', '', $ordner);
@@ -38,8 +48,7 @@
 		return htmlspecialchars($string, ENT_QUOTES, "UTF-8");
 	}	
 	
-	define('JPATH_BASE', $_SERVER['DOCUMENT_ROOT'].$ordner );	// Absoluter Pfad zu der Joomla Installation
-	 
+	define('JPATH_BASE', $_SERVER['DOCUMENT_ROOT'].$prefordner.$ordner );	// Absoluter Pfad zu der Joomla Installation
 	// Einbinden der Notwendigen Klassen falls diese noch nicht geladen wurden
 	require_once ( JPATH_BASE .DS.'includes'.DS.'defines.php' );
 	require_once ( JPATH_BASE .DS.'includes'.DS.'framework.php' );
